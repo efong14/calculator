@@ -17,9 +17,9 @@ let btnMinus = document.querySelector (".btnMinus");
 let btnAdd = document.querySelector (".btnAdd");
 let btnEquals = document.querySelector (".btnEquals");
 
-let operator = "*";
-let numOne = 5;
-let numTwo = 5;
+let operator = "";
+let numOne = "";
+let numTwo = "";
 
 function add (a, b) {
    return a + b;
@@ -43,6 +43,35 @@ function operate (a, b, c) {
 
 operate (operator, numOne, numTwo);
 
+function clearBtn () {
+    display.textContent = 0;
+    numOne = 0;
+    numTwo = 0;
+    operator = ""
+};
+function numberBtn (a){
+    if (operator != "") {
+        if (numTwo == 0) {
+            display.textContent = a;
+        } else {
+            display.textContent += a;
+        };
+        numTwo += a;
+    } else { 
+        if (numOne == 0) {
+            display.textContent = a;
+        } else {
+            display.textContent += a;
+        };
+        numOne += a;
+    }
+};
+function opBtn (a){
+    display.textContent = a;
+    operator = a;
+};
+
+
 // display.textContent = ops.operator + ops.numOne + ops.numtwo
 // let ops = {
 //     operator : "*",
@@ -51,19 +80,30 @@ operate (operator, numOne, numTwo);
 // };
 // operate (ops.operator, ops.numOne, ops.numTwo);
 
-btnClear.onclick = () => display.textContent = ""
-btnOne.onclick = () => display.textContent += "1";
-btnTwo.onclick = () => display.textContent += "2";
-btnThree.onclick = () => display.textContent += "3";
-btnFour.onclick = () => display.textContent += "4";
-btnFive.onclick = () => display.textContent += "5";
-btnSix.onclick = () => display.textContent += "6";
-btnSeven.onclick = () => display.textContent += "7";
-btnEight.onclick = () => display.textContent += "8";
-btnNine.onclick = () => display.textContent += "9";
-btnZero.onclick = () => display.textContent += "0";
 
 
+btnClear.onclick = () => clearBtn ()
+btnOne.onclick = () => numberBtn (1);
+btnTwo.onclick = () => numberBtn (2);
+btnThree.onclick = () => numberBtn (3);
+btnFour.onclick = () => numberBtn (4);
+btnFive.onclick = () => numberBtn (5);
+btnSix.onclick = () => numberBtn (6);
+btnSeven.onclick = () => numberBtn (7);
+btnEight.onclick = () => numberBtn (8);
+btnNine.onclick = () => numberBtn (9);
+btnZero.onclick = () => numberBtn (0);
+btnDivide.onclick = () => opBtn ("/")
+btnMultiply.onclick = () => opBtn ("*")
+btnMinus.onclick = () => opBtn ("-")
+btnAdd.onclick = () => opBtn ("+")
+// btnEquals.onclick = () => 
+
+
+
+btnEquals
+
+// function btnOp
 
 
 
