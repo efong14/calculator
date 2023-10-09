@@ -1,4 +1,5 @@
 let display = document.querySelector (".display");
+let displayOP = document.querySelector (".displayOP")
 let btnClear = document.querySelector (".btnClear")
 let btnNum = document.querySelectorAll (".btnNum");
 let btnDivide = document.querySelector (".btnDivide");
@@ -11,7 +12,6 @@ let operator = "";
 let numOne = "";
 let numTwo = "";
 let result = "";
-
 
 function add (a, b) {
    return a + b;
@@ -39,9 +39,14 @@ function clearBtn () {
     numOne = 0;
     numTwo = 0;
     operator = "";
+    displayOP.textContent = "";
+    result = "";
 };
 
 function clickNum (a){
+    if (display.textContent == result) {
+        clearBtn ();
+    };
     if (operator != "") {
         displayTwo (a)
     } else { 
@@ -69,16 +74,20 @@ function displayTwo (a) {
 };
 
 function opBtn (a){
+    if (result != "") {
+        numOne = result;
+    };
     display.textContent = a.textContent;
     operator = a.textContent;
+    numTwo = "";
+    displayOP.textContent = numOne + " " + operator
 };
 
 function equals () { 
     if (numOne != "") {
     result = operate (operator, +numOne, +numTwo);
-    numOne = result
-    numTwo = ""
-    display.textContent = numOne
+    display.textContent = result;
+    displayOP.textContent = numOne + " " + operator + " " + numTwo
     };
 };
 
