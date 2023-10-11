@@ -1,11 +1,10 @@
 let display = document.querySelector (".display");
 let displayOP = document.querySelector (".displayOP")
 let btnClear = document.querySelector (".btnClear")
+let btnNeg = document.querySelector (".btnNeg")
+let btnDel = document.querySelector (".btnDel")
 let btnNum = document.querySelectorAll (".btnNum");
-let btnDivide = document.querySelector (".btnDivide");
-let btnMultiply = document.querySelector (".btnMultiply");
-let btnMinus = document.querySelector (".btnMinus");
-let btnAdd = document.querySelector (".btnAdd");
+let btnOp = document.querySelectorAll (".btnOp")
 let btnEquals = document.querySelector (".btnEquals");
 
 let operator = "";
@@ -43,6 +42,20 @@ function clearBtn () {
     result = "";
 };
 
+function negBtn () {
+    if (display.textContent == result) {
+        clearBtn ();
+    };
+    if (numOne == 0) {
+        display.textContent = "-" ;
+        numOne = "-" + numOne;
+    };
+    if (operator != "") {
+        display.textContent = "-";
+        numTwo = "-" + numTwo;
+    };
+}
+
 function clickNum (a){
     if (display.textContent == result) {
         clearBtn ();
@@ -55,7 +68,7 @@ function clickNum (a){
 };
 
 function displayOne (a) {
-    if (numOne == 0) {
+    if (numOne == 0 || numOne != "-0") {
     display.textContent = a.textContent;
     numOne = a.textContent;
     } else {
@@ -73,7 +86,7 @@ function displayTwo (a) {
     };
 };
 
-function opBtn (a){
+function clickOp (a){
     if (result != "") {
         numOne = result;
     };
@@ -84,7 +97,7 @@ function opBtn (a){
 };
 
 function equals () { 
-    if (numOne != "") {
+    if (numOne != "" && operator != "" && numTwo != "") {
     result = operate (operator, +numOne, +numTwo);
     display.textContent = result;
     displayOP.textContent = numOne + " " + operator + " " + numTwo
@@ -94,11 +107,9 @@ function equals () {
 
 btnClear.onclick = () => clearBtn ();
 btnNum.forEach ((button) => button.onclick = () => clickNum (button));
-btnDivide.onclick = () => opBtn (btnDivide);
-btnMultiply.onclick = () => opBtn (btnMultiply) ;
-btnMinus.onclick = () => opBtn (btnMinus);
-btnAdd.onclick = () => opBtn (btnAdd);
+btnOp.forEach ((button) => button.onclick = () => clickOp (button))
 btnEquals.onclick = () => equals ();
+btnNeg.onclick = () => negBtn ();
 
 
 
