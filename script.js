@@ -1,11 +1,13 @@
 let display = document.querySelector (".display");
 let displayOP = document.querySelector (".displayOP")
 let btnClear = document.querySelector (".btnClear")
-let btnNeg = document.querySelector (".btnNeg")
 let btnDel = document.querySelector (".btnDel")
 let btnNum = document.querySelectorAll (".btnNum");
-let btnOp = document.querySelectorAll (".btnOp")
+let btnDot = document.querySelector (".btnDot");
+let btnOp = document.querySelectorAll (".btnOp");
 let btnEquals = document.querySelector (".btnEquals");
+
+
 
 let operator = "";
 let numOne = "";
@@ -42,20 +44,6 @@ function clearBtn () {
     result = "";
 };
 
-function negBtn () {
-    if (display.textContent == result) {
-        clearBtn ();
-    };
-    if (numOne == 0) {
-        display.textContent = "-" ;
-        numOne = "-" + numOne;
-    };
-    if (operator != "") {
-        display.textContent = "-";
-        numTwo = "-" + numTwo;
-    };
-}
-
 function clickNum (a){
     if (display.textContent == result) {
         clearBtn ();
@@ -67,8 +55,15 @@ function clickNum (a){
     };
 };
 
+function clickDot () {
+    let dotString = display.textContent;
+    if (!dotString.includes(".")) {
+        clickNum (btnDot);
+    }
+};
+
 function displayOne (a) {
-    if (numOne == 0 || numOne != "-0") {
+    if (numOne == 0) {
     display.textContent = a.textContent;
     numOne = a.textContent;
     } else {
@@ -97,7 +92,7 @@ function clickOp (a){
 };
 
 function equals () { 
-    if (numOne != "" && operator != "" && numTwo != "") {
+    if (operator != "" && numTwo != "") {
     result = operate (operator, +numOne, +numTwo);
     display.textContent = result;
     displayOP.textContent = numOne + " " + operator + " " + numTwo
@@ -109,8 +104,7 @@ btnClear.onclick = () => clearBtn ();
 btnNum.forEach ((button) => button.onclick = () => clickNum (button));
 btnOp.forEach ((button) => button.onclick = () => clickOp (button))
 btnEquals.onclick = () => equals ();
-btnNeg.onclick = () => negBtn ();
-
+btnDot.onclick = () => clickDot ()
 
 
 
