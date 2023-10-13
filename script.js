@@ -7,8 +7,6 @@ let btnDot = document.querySelector (".btnDot");
 let btnOp = document.querySelectorAll (".btnOp");
 let btnEquals = document.querySelector (".btnEquals");
 
-
-
 let operator = "";
 let numOne = "";
 let numTwo = "";
@@ -34,36 +32,8 @@ function operate (a, b, c) {
     divide (b, c) : "Please try again.";
 };
 
-
-function clearBtn () {
-    display.textContent = 0;
-    numOne = 0;
-    numTwo = 0;
-    operator = "";
-    displayOP.textContent = "";
-    result = "";
-};
-
-function clickNum (a){
-    if (display.textContent == result) {
-        clearBtn ();
-    };
-    if (operator != "") {
-        displayTwo (a)
-    } else { 
-        displayOne (a)
-    };
-};
-
-function clickDot () {
-    let dotString = display.textContent;
-    if (!dotString.includes(".")) {
-        clickNum (btnDot);
-    }
-};
-
 function displayOne (a) {
-    if (numOne == 0) {
+    if (numOne == "") {
     display.textContent = a.textContent;
     numOne = a.textContent;
     } else {
@@ -81,30 +51,86 @@ function displayTwo (a) {
     };
 };
 
-function clickOp (a){
+function operation (a) {
     if (result != "") {
         numOne = result;
     };
     display.textContent = a.textContent;
     operator = a.textContent;
     numTwo = "";
-    displayOP.textContent = numOne + " " + operator
+    displayOP.textContent = numOne + " " + operator;
 };
 
-function equals () { 
-    if (operator != "" && numTwo != "") {
-    result = operate (operator, +numOne, +numTwo);
-    display.textContent = result;
-    displayOP.textContent = numOne + " " + operator + " " + numTwo
+function clickClear () {
+    display.textContent = 0;
+    numOne = 0;
+    numTwo = 0;
+    operator = "";
+    displayOP.textContent = "";
+    result = "";
+};
+
+function clickNum (a){
+    if (display.textContent == result || display.textContent == "You can't do that!") {
+        clickClear ();
+    };
+    if (operator != "") {
+        displayTwo (a)
+    } else { 
+        displayOne (a)
     };
 };
 
+function clickDot () {
+    let dotString = display.textContent;
+    if (!dotString.includes(".")) {
+        clickNum (btnDot);
+    };
+};
 
-btnClear.onclick = () => clearBtn ();
+function clickOp (a){
+    if (numTwo != "") {
+        clickEquals ();
+        operation (a);
+    } else {
+        operation (a);
+    };
+};
+
+function clickEquals () { 
+    if (operator != "" && numTwo != "") {
+        result = operate (operator, +numOne, +numTwo);
+        result = result.toString();
+        displayOP.textContent = numOne + " " + operator + " " + numTwo;
+        if (result != "Infinity") {
+            display.textContent = result;
+        } else {
+            display.textContent = "You can't do that!"
+        }
+    };
+};
+
+// function clickDel () {
+//     if (display.textContent == result) {
+//         result = result.slice (0, -1);
+//         display.textContent = display.textContent.slice (0, -1);
+//     } else if (numTwo == "" ) {
+//         numOne = numOne.slice (0, -1);
+//         display.textContent = display.textContent.slice (0, -1);
+//     } else {
+//         numTwo = numTwo.slice(0, -1);
+//         display.textContent = display.textContent.slice (0, -1);
+//     };
+// };
+
+
+btnClear.onclick = () => clickClear ();
 btnNum.forEach ((button) => button.onclick = () => clickNum (button));
 btnOp.forEach ((button) => button.onclick = () => clickOp (button))
-btnEquals.onclick = () => equals ();
-btnDot.onclick = () => clickDot ()
+btnDot.onclick = () => clickDot ();
+// btnDel.onclick = () => clickDel ();
+btnEquals.onclick = () => clickEquals ();
+
 
 
 
