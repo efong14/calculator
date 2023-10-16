@@ -100,6 +100,7 @@ function clickOp (a){
 function clickEquals () { 
     if (operator != "" && numTwo != "") {
         result = operate (operator, +numOne, +numTwo);
+        result = Math.round (result * 10000) / 10000
         result = result.toString();
         displayOP.textContent = numOne + " " + operator + " " + numTwo;
         if (result != "Infinity") {
@@ -110,25 +111,22 @@ function clickEquals () {
     };
 };
 
-// function clickDel () {
-//     if (display.textContent == result) {
-//         result = result.slice (0, -1);
-//         display.textContent = display.textContent.slice (0, -1);
-//     } else if (numTwo == "" ) {
-//         numOne = numOne.slice (0, -1);
-//         display.textContent = display.textContent.slice (0, -1);
-//     } else {
-//         numTwo = numTwo.slice(0, -1);
-//         display.textContent = display.textContent.slice (0, -1);
-//     };
-// };
+function clickDel () {
+    if (display.textContent == numOne ) {
+        numOne = numOne.slice (0, -1);
+        display.textContent = display.textContent.slice (0, -1);
+    } else if (display.textContent == numTwo) {
+        numTwo = numTwo.slice(0, -1);
+        display.textContent = display.textContent.slice (0, -1);
+    };
+};
 
 
 btnClear.onclick = () => clickClear ();
 btnNum.forEach ((button) => button.onclick = () => clickNum (button));
 btnOp.forEach ((button) => button.onclick = () => clickOp (button))
 btnDot.onclick = () => clickDot ();
-// btnDel.onclick = () => clickDel ();
+btnDel.onclick = () => clickDel ();
 btnEquals.onclick = () => clickEquals ();
 
 
