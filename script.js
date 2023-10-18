@@ -103,7 +103,7 @@ function clickEquals () {
         result = Math.round (result * 10000) / 10000
         result = result.toString();
         displayOP.textContent = numOne + " " + operator + " " + numTwo;
-        if (result != "Infinity") {
+        if (result != "Infinity" && result != "NaN") {
             display.textContent = result;
         } else {
             display.textContent = "You can't do that!"
@@ -118,6 +118,8 @@ function clickDel () {
     } else if (display.textContent == numTwo) {
         numTwo = numTwo.slice(0, -1);
         display.textContent = display.textContent.slice (0, -1);
+    } else {
+        return;
     };
 };
 
@@ -128,6 +130,22 @@ btnOp.forEach ((button) => button.onclick = () => clickOp (button))
 btnDot.onclick = () => clickDot ();
 btnDel.onclick = () => clickDel ();
 btnEquals.onclick = () => clickEquals ();
+
+window.addEventListener ("keydown", function (e) {
+    let keyPress = document.querySelector(`button[keyboard="${e.key}"]`);
+    if (e.key === "=" || e.key == "Enter") {
+        btnEquals.click();
+    } else if (e.key === "Delete" || e.key === "Backspace") {    
+        btnDel.click();
+    } else if (!keyPress) {
+        return;
+    } else {
+        keyPress.click();
+    }
+});
+
+
+
 
 
 
