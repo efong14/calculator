@@ -6,6 +6,7 @@ let btnNum = document.querySelectorAll (".btnNum");
 let btnDot = document.querySelector (".btnDot");
 let btnOp = document.querySelectorAll (".btnOp");
 let btnEquals = document.querySelector (".btnEquals");
+let button = document.querySelectorAll("button")
 
 let operator = "";
 let numOne = "";
@@ -68,9 +69,11 @@ function clickClear () {
     operator = "";
     displayOP.textContent = "";
     result = "";
+    btnClear.classList.add ("clicked");
 };
 
 function clickNum (a){
+    if (display.textContent.length > 10) return;
     if (display.textContent == result || display.textContent == "You can't do that!") {
         clickClear ();
     };
@@ -79,6 +82,7 @@ function clickNum (a){
     } else { 
         displayOne (a)
     };
+    a.classList.add ("clicked");
 };
 
 function clickDot () {
@@ -86,6 +90,7 @@ function clickDot () {
     if (!dotString.includes(".")) {
         clickNum (btnDot);
     };
+    btnClear.classList.add ("clicked");
 };
 
 function clickOp (a){
@@ -95,6 +100,7 @@ function clickOp (a){
     } else {
         operation (a);
     };
+    a.classList.add ("clicked");
 };
 
 function clickEquals () { 
@@ -107,8 +113,9 @@ function clickEquals () {
             display.textContent = result;
         } else {
             display.textContent = "You can't do that!"
-        }
+        };
     };
+    btnEquals.classList.add ("clicked");
 };
 
 function clickDel () {
@@ -121,8 +128,13 @@ function clickDel () {
     } else {
         return;
     };
+    btnDel.classList.add ("clicked");
 };
 
+function clickEnd (e) {
+    if (e.propertyName !== "background-color") return;
+    this.classList.remove("clicked");
+}
 
 btnClear.onclick = () => clickClear ();
 btnNum.forEach ((button) => button.onclick = () => clickNum (button));
@@ -130,6 +142,8 @@ btnOp.forEach ((button) => button.onclick = () => clickOp (button))
 btnDot.onclick = () => clickDot ();
 btnDel.onclick = () => clickDel ();
 btnEquals.onclick = () => clickEquals ();
+button.forEach((buttons) => buttons.addEventListener("transitionend", clickEnd));
+
 
 window.addEventListener ("keydown", function (e) {
     let keyPress = document.querySelector(`button[keyboard="${e.key}"]`);

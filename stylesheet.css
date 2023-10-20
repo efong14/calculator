@@ -55,6 +55,7 @@ button {
     justify-content: center;
     align-items: center;
     font-size: 25px;
+    transition: all .2s;
 }
 
 .btnOp, .btnEquals {
@@ -69,6 +70,9 @@ button {
     width: 150px;
     border-radius: 25px;
     justify-content: flex-start;
+}
+.clicked {
+    background-color: yellow;
 }
 
 
