@@ -90,8 +90,8 @@ function clickDot () {
     if (!dotString.includes(".")) {
         clickNum (btnDot);
     };
-    btnClear.classList.add ("clicked");
-};
+    btnDot.classList.add ("clicked");
+}; 
 
 function clickOp (a){
     if (numTwo != "") {
@@ -136,18 +136,15 @@ function clickEnd (e) {
     this.classList.remove("clicked");
 }
 
-btnClear.onclick = () => clickClear ();
-btnNum.forEach ((button) => button.onclick = () => clickNum (button));
-btnOp.forEach ((button) => button.onclick = () => clickOp (button))
-btnDot.onclick = () => clickDot ();
-btnDel.onclick = () => clickDel ();
-btnEquals.onclick = () => clickEquals ();
-button.forEach((buttons) => buttons.addEventListener("transitionend", clickEnd));
+function keyEnd (e) {
+    let keyPress = document.querySelector(`button[keyboard="${e.key}"]`);
+    keyPress.classList.remove("clicked");
+}
 
-
-window.addEventListener ("keydown", function (e) {
+function keyDowned (e) {
     let keyPress = document.querySelector(`button[keyboard="${e.key}"]`);
     if (e.key === "=" || e.key == "Enter") {
+        e.preventDefault();
         btnEquals.click();
     } else if (e.key === "Delete" || e.key === "Backspace") {    
         btnDel.click();
@@ -156,7 +153,20 @@ window.addEventListener ("keydown", function (e) {
     } else {
         keyPress.click();
     }
-});
+};
+
+btnClear.onclick = () => clickClear ();
+btnNum.forEach ((button) => button.onclick = () => clickNum (button));
+btnOp.forEach ((button) => button.onclick = () => clickOp (button))
+btnDot.onclick = () => clickDot ();
+btnDel.onclick = () => clickDel ();
+btnEquals.onclick = () => clickEquals ();
+button.forEach((buttons) => buttons.addEventListener("transitionend", clickEnd));
+window.addEventListener ("keydown", keyDowned);
+window.addEventListener ("keyup", keyEnd);
+
+
+
 
 
 

@@ -1,42 +1,47 @@
 html {
     box-sizing: border-box;
+    color: #F99417
 }
 
 body {
     display: flex;
     flex-direction: column ;
     align-items: center;
+    background-color: #4D4C7D;
 }
 
 .calc {
-    border: 1px solid red;
-    width: 328px; 
-    height: 422px;
+    border: 5px solid #F99417;
+    border-radius: 15px;
+    background-color: #F5F5F5;
+    /* width: 324px; 
+    height: 465px; */
 }
 
 .displayContainer {
-    border: 1px solid black;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
+    margin: 15px;
+    border: 2px solid #F99417;
+    border-radius: 15px;
+    background-color: #363062;
 }
 
 .display, .displayOP {
-    height: 15px;
-    padding: 5px;
+    height: 30px;
+    padding: 10px;
+    font-size: 25px;
 }
 
 .input {
     display: flex;
-    border: 1px solid blue;
 }
 
-.numContainer, .opContainer {
-    /* display: flex;
-    flex-direction: column; */
-    border: 5px solid green;
-    /* flex: 2; */
-}
+/* .numContainer, .opContainer {
+    background-color: #4D4C7D;
+    border-radius: 0%;
+} */
 
 .row {
     display: flex;
@@ -49,13 +54,16 @@ button {
     width: 25px;
     height: 25px;
     border-radius:50%;
+    border: 2px solid #F99417;
+    box-shadow: 2px 2px #F99417;
+    color: #F99417;
     padding: 30px;
     margin: 5px;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 25px;
-    transition: all .2s;
+    transition: all .1s;
 }
 
 .btnOp, .btnEquals {
@@ -72,7 +80,7 @@ button {
     justify-content: flex-start;
 }
 .clicked {
-    background-color: yellow;
+    background-color: #F99417;
 }
 
 
