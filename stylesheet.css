@@ -1,3 +1,7 @@
+* {
+    font-family: sans-serif;
+}
+
 html {
     box-sizing: border-box;
     color: #F99417
@@ -7,15 +11,15 @@ body {
     display: flex;
     flex-direction: column ;
     align-items: center;
-    background-color: #4D4C7D;
+    background-color: #EAD7BB;
 }
 
 .calc {
+    margin-top: 50px;
     border: 5px solid #F99417;
     border-radius: 15px;
-    background-color: #F5F5F5;
-    /* width: 324px; 
-    height: 465px; */
+    background-color: #F6F1EE;
+    box-shadow: 2px 2px 5px #F99417;
 }
 
 .displayContainer {
@@ -25,7 +29,7 @@ body {
     margin: 15px;
     border: 2px solid #F99417;
     border-radius: 15px;
-    background-color: #363062;
+    background-color: #FFF2D8;
 }
 
 .display, .displayOP {
@@ -36,12 +40,8 @@ body {
 
 .input {
     display: flex;
+    padding: 10px;
 }
-
-/* .numContainer, .opContainer {
-    background-color: #4D4C7D;
-    border-radius: 0%;
-} */
 
 .row {
     display: flex;
@@ -55,7 +55,7 @@ button {
     height: 25px;
     border-radius:50%;
     border: 2px solid #F99417;
-    box-shadow: 2px 2px #F99417;
+    box-shadow: 2px 2px 2px #F99417;
     color: #F99417;
     padding: 30px;
     margin: 5px;
@@ -72,13 +72,13 @@ button {
 }
 
 .btnClear,.btnZero {
-    /* flex: 10%; */
     padding-top: 30px;
     padding-bottom: 30px;
-    width: 150px;
+    width: 135px;
     border-radius: 25px;
     justify-content: flex-start;
 }
+
 .clicked {
     background-color: #F99417;
 }
