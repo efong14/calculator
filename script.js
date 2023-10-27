@@ -119,6 +119,7 @@ function clickEquals () {
 };
 
 function clickDel () {
+    if(display.textContent == "") return
     if (display.textContent == numOne ) {
         numOne = numOne.slice (0, -1);
         display.textContent = display.textContent.slice (0, -1);
@@ -128,7 +129,6 @@ function clickDel () {
     } else {
         return;
     };
-    btnDel.classList.add ("clicked");
 };
 
 function clickEnd (e) {
